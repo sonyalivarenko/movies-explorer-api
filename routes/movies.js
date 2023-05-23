@@ -13,7 +13,7 @@ routerMovie.post('/', celebrate({
     nameEN: Joi.string().required(),
     movieId: Joi.number().required(),
     thumbnail: Joi.string().required().regex(constRegex),
-    trailer: Joi.string().required().regex(constRegex),
+    trailerLink: Joi.string().required().regex(constRegex),
     description: Joi.string().required(),
     year: Joi.string().required(),
     director: Joi.string().required(),

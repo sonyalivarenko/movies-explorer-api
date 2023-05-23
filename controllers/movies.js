@@ -15,10 +15,10 @@ module.exports.getMovies = (req, res, next) => {
 };
 
 module.exports.createMovie = (req, res, next) => {
-  const { country, director, duration, year, description, image, trailer,
+  const { country, director, duration, year, description, image, trailerLink,
     nameRU, nameEN, thumbnail, movieId } = req.body;
   Movie.create({ country, director, duration, year, description, image,
-    trailer, nameRU, nameEN, thumbnail, movieId, owner: req.user._id })
+    trailerLink, nameRU, nameEN, thumbnail, movieId, owner: req.user._id })
     .then((movie) => movie.populate('owner'))
     .then((movie) => res.status(201).send({ data: movie }))
     .catch((err) => {
