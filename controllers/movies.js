@@ -37,11 +37,11 @@ module.exports.deleteMovie = (req, res, next) => {
     .populate('owner')
     .then((movie) => {
       if (!movie) {
-        throw new DocumentNotFoundError('Карточка не найдена');
+        throw new DocumentNotFoundError('Фильм не найден');
       } else {
         const ownerId = movie.owner.id;
         if (ownerId !== userId) {
-          throw new ForbiddenError('Нельзя удалить чужую карточку');
+          throw new ForbiddenError('Нельзя удалить чужой фильм');
         } else {
           Movie.deleteOne(movie)
             .then((info) => {

@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 const mongoose = require('mongoose');
-
-const isUrl = /https?:\/\/w*[-._~:/?#[\]@!$&'()*+,;=0-9a-z]+#?/i;
+const { constRegex } = require('../utils/constRegex');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -27,17 +26,17 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     required: true,
-    validate: isUrl,
+    validate: constRegex,
   },
   trailerLink: {
     type: String,
     required: true,
-    validate: isUrl,
+    validate: constRegex,
   },
   thumbnail: {
     type: String,
     required: true,
-    validate: isUrl,
+    validate: constRegex,
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
