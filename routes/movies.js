@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const routerMovie = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const { getMovies, createMovie, deleteMovie } = require('../controllers/movies');

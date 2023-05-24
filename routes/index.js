@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const router = require('express').Router();
 const { routerUser } = require('./users');
 const { routerMovie } = require('./movies');

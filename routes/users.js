@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const routerUser = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const { updateProfile, getСurrentUser } = require('../controllers/users');

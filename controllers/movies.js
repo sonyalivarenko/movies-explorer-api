@@ -1,6 +1,3 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable object-property-newline */
-/* eslint-disable linebreak-style */
 const mongoose = require('mongoose');
 const ValidationError = require('../errors/ValidationError');
 const DocumentNotFoundError = require('../errors/DocumentNotFoundError');
@@ -8,17 +5,34 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const Movie = require('../models/movie');
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({})
+  const userId = req.user._id;
+  Movie.find({ owner: userId })
     .populate('owner')
-    .then((movie) => res.send({ data: movie }))
+    .then((movie) => {
+      res.send({ data: movie });
+    })
     .catch((err) => next(err));
 };
 
 module.exports.createMovie = (req, res, next) => {
-  const { country, director, duration, year, description, image, trailerLink,
-    nameRU, nameEN, thumbnail, movieId } = req.body;
-  Movie.create({ country, director, duration, year, description, image,
-    trailerLink, nameRU, nameEN, thumbnail, movieId, owner: req.user._id })
+  const {
+    country, director, duration, year, description, image, trailerLink,
+    nameRU, nameEN, thumbnail, movieId,
+  } = req.body;
+  Movie.create({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    nameRU,
+    nameEN,
+    thumbnail,
+    movieId,
+    owner: req.user._id,
+  })
     .then((movie) => movie.populate('owner'))
     .then((movie) => res.status(201).send({ data: movie }))
     .catch((err) => {
